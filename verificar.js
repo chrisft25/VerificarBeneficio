@@ -4,7 +4,7 @@ const app = express();
 
 app.get("/", async (req, res) => {
   let dui = req.query.Digits;
-  let response = `<Response><Say language="es" voice="woman">El número de DUI ingresado es inválido.</Say><Response>`;
+  let response = `<Response><Say language="es" voice="woman">El número de DUI ingresado es inválido.</Say></Response>`;
   if (dui.length === 9) {
     dui = dui.substr(0, 8) + "-" + dui.substr(8, 1);
     if (validarDUI(dui)) {
@@ -37,11 +37,11 @@ const buscarInfo = async dui => {
   });
   await browser.close();
   if (respuesta) {
-    return `<Response><Say language="es" voice="woman">${respuesta}</Say><Response>`;
+    return `<Response><Say language="es" voice="woman">${respuesta}</Say></Response>`;
   } else {
     return {
       success: false,
-      msg: `<Response><Say language="es" voice="woman">Este DUI no está sujeto a recibir el beneficio de los $300. Intenta ingreso el DUI de otra persona de tu vivienda. Si después de haber consultado todos los números de DUI de tu grupo familiar y ninguno aparece en el registro, dirígete al Centro de Atención por Demanda (CENADE) más cercano</Say><Response>`
+      msg: `<Response><Say language="es" voice="woman">Este DUI no está sujeto a recibir el beneficio de los $300. Intenta ingreso el DUI de otra persona de tu vivienda. Si después de haber consultado todos los números de DUI de tu grupo familiar y ninguno aparece en el registro, dirígete al Centro de Atención por Demanda (CENADE) más cercano</Say></Response>`
     };
   }
 };
