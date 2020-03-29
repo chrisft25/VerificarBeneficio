@@ -17,7 +17,9 @@ app.get("/", async (req, res) => {
 app.listen(8000);
 
 const buscarInfo = async dui => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    args: ["--no-sandbox", "--disable-setuid-sandbox"]
+  });
   const page = await browser.newPage();
   await page.goto("https://covid19-elsalvador.com/");
   await page.waitForSelector("#dui");
@@ -39,10 +41,7 @@ const buscarInfo = async dui => {
   if (respuesta) {
     return `<Response><Say language="es" voice="woman">${respuesta}</Say></Response>`;
   } else {
-    return {
-      success: false,
-      msg: `<Response><Say language="es" voice="woman">Este DUI no está sujeto a recibir el beneficio de los $300. Intenta ingreso el DUI de otra persona de tu vivienda. Si después de haber consultado todos los números de DUI de tu grupo familiar y ninguno aparece en el registro, dirígete al Centro de Atención por Demanda (CENADE) más cercano</Say></Response>`
-    };
+    return `<Response><Say language="es" voice="woman">Este DUI no está sujeto a recibir el beneficio de los $300. Intenta ingreso el DUI de otra persona de tu vivienda. Si después de haber consultado todos los números de DUI de tu grupo familiar y ninguno aparece en el registro, dirígete al Centro de Atención por Demanda (CENADE) más cercano</Say></Response>`;
   }
 };
 
