@@ -2,8 +2,8 @@ const puppeteer = require("puppeteer");
 const express = require("express");
 const app = express();
 
-app.get("/:dui", async (req, res) => {
-  let dui = req.params.dui;
+app.get("/", async (req, res) => {
+  let dui = req.query.Digits;
   let response = `<Response><Say language="es" voice="woman">El número de DUI ingresado es inválido.</Say><Response>`;
   if (dui.length === 9) {
     dui = dui.substr(0, 8) + "-" + dui.substr(8, 1);
@@ -11,7 +11,7 @@ app.get("/:dui", async (req, res) => {
       response = await buscarInfo(dui);
     }
   }
-  res.send(response);
+  res.send(response.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
 });
 
 app.listen(8000);
