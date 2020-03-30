@@ -34,7 +34,7 @@ app.listen(PORT, () => {
 const buscarInfo = async (dui,tipo) => {
   const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
   const page = await browser.newPage();
-  await page.goto("https://www.covid19-elsalvador.com/");
+  await page.goto(process.env.API_URL);
   //await page.waitForSelector("#cf-error-details");
   //await page.click('button[type="submit"]')
   await page.waitForSelector("#dui");
