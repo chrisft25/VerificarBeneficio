@@ -45,4 +45,4 @@ EXPOSE 8000
 ## https://github.com/puppeteer/puppeteer/blob/master/docs/troubleshooting.md#running-puppeteer-in-docker
 ENTRYPOINT ["dumb-init", "--"]
 
-# CMD ["node", "verificar.js"]
+CMD ["node", "verificar.js"]
