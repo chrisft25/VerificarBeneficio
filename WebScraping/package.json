@@ -4,14 +4,14 @@
   "description": "",
   "main": "verificar.js",
   "dependencies": {
-    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "puppeteer": "^2.1.1"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node verificar.js"
   },
-  "author": "",
+  "author": "Conectados.sv",
   "license": "ISC"
 }

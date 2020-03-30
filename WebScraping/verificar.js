@@ -1,9 +1,9 @@
 const puppeteer = require("puppeteer");
 const express = require("express");
 const app = express();
-require('dotenv').config()
 
 const PORT = process.env.PORT || 8000;
+const API_URL = process.env.API_URL;
 
 app.get("/sms/:dui", async (req, res) => {
   let dui = req.params.dui;
@@ -36,7 +36,7 @@ app.listen(PORT, () => {
 const buscarInfo = async (dui,tipo) => {
   const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
   const page = await browser.newPage();
-  await page.goto(process.env.API_URL);
+  await page.goto(API_URL);
   //await page.waitForSelector("#cf-error-details");
   //await page.click('button[type="submit"]')
   await page.waitForSelector("#dui");
