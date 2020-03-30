@@ -1,6 +1,8 @@
 const puppeteer = require("puppeteer");
 const express = require("express");
 const app = express();
+require('dotenv').config()
+
 const PORT = process.env.PORT || 8000;
 
 app.get("/sms/:dui", async (req, res) => {
