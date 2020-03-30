@@ -1,6 +1,7 @@
 const puppeteer = require("puppeteer");
 const express = require("express");
 const app = express();
+const PORT = process.env.PORT || 8000;
 
 app.get("/:dui", async (req, res) => {
   let dui = req.params.dui;
@@ -14,7 +15,10 @@ app.get("/:dui", async (req, res) => {
   res.json(response);
 });
 
-app.listen(8000);
+// app.listen(8000);
+app.listen(PORT, () => {
+  console.log(`App Running in port ${PORT}`);
+});
 
 const buscarInfo = async dui => {
   const browser = await puppeteer.launch();
