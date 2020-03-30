@@ -8,13 +8,15 @@ const API_URL = process.env.API_URL;
 
 app.get("/sms", async (req, res) => {
   let dui = req.query.Body;
-  let response = `<Response><Message to="">El número de DUI ingresado es inválido.</Say></Response>`;
+  let destinatario = req.query.From;
+  let response;
   if (dui.length === 9) {
     dui = dui.substr(0, 8) + "-" + dui.substr(8, 1);
     if (validarDUI(dui)) {
       response = await buscarInfo(dui,1);
     }
   }
+  response = `<Response><Message to="${destinatario}">${response}</Message></Response>`
   res.send(response);
 });
 
@@ -60,7 +62,7 @@ const buscarInfo = async (dui,tipo) => {
   if (respuesta) {
     switch(tipo){
       case 1:
-        response = { success: true, msg: respuesta };
+        response = "Eres beneficiario de los $300 dólares. Puedes acercarte a una agencia bancaria para solicitarlos.";
         break;
       
       case 2:
@@ -71,11 +73,7 @@ const buscarInfo = async (dui,tipo) => {
   } else {
       switch(tipo){
       case 1:
-        response = {
-      success: false,
-      msg:
-        "Lo sentimos, este DUI no está sujeto a recibir el beneficio de los $300 dólares. Intenta ingresando el DUI de otra persona de tu vivienda. Si después de haber consultado todos los números de DUI de tu grupo familiar y ninguno aparece en el registro, dirígete al Centro de Atención por Demanda (CENADE) más cercano."
-    };
+        response = "Lo sentimos, este DUI no está sujeto a recibir el beneficio de los $300 dólares. Intenta ingresando el DUI de otra persona de tu vivienda."
         break;
       
       case 2:
