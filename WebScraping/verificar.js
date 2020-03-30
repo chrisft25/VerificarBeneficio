@@ -1,20 +1,21 @@
 const puppeteer = require("puppeteer");
 const express = require("express");
 const app = express();
+require('dotenv').config()
 
 const PORT = process.env.PORT || 8000;
 const API_URL = process.env.API_URL;
 
-app.get("/sms/:dui", async (req, res) => {
-  let dui = req.params.dui;
-  let response = { success: false, msg: "El número de DUI ingresado es inválido." };
+app.get("/sms", async (req, res) => {
+  let dui = req.query.Body;
+  let response = `<Response><Message to="">El número de DUI ingresado es inválido.</Say></Response>`;
   if (dui.length === 9) {
     dui = dui.substr(0, 8) + "-" + dui.substr(8, 1);
     if (validarDUI(dui)) {
       response = await buscarInfo(dui,1);
     }
   }
-  res.json(response);
+  res.send(response);
 });
 
 app.get("/call", async (req, res) => {
