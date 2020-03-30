@@ -24,7 +24,7 @@ app.get("/call", async (req, res) => {
       response = await buscarInfo(dui,2);
     }
   }
-  res.json(response);
+  res.send(response);
 });
 
 app.listen(PORT, () => {
