@@ -9,7 +9,7 @@ const API_URL = process.env.API_URL;
 app.get("/sms", async (req, res) => {
   let dui = req.query.Body;
   let destinatario = req.query.From;
-  let response;
+  let response = "El DUI no es válido"
   if (dui.length === 9) {
     dui = dui.substr(0, 8) + "-" + dui.substr(8, 1);
     if (validarDUI(dui)) {
