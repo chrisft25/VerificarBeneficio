@@ -15,8 +15,8 @@ app.get("/sms/:dui", async (req, res) => {
   res.json(response);
 });
 
-app.get("/call/:dui", async (req, res) => {
-  let dui = req.params.dui;
+app.get("/call", async (req, res) => {
+  let dui = req.query.Digits;
   let response = `<Response><Say language="es" voice="woman">El número de DUI ingresado es inválido.</Say></Response>`;
   if (dui.length === 9) {
     dui = dui.substr(0, 8) + "-" + dui.substr(8, 1);
