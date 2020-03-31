@@ -22,7 +22,7 @@ app.get("/sms", async (req, res) => {
 
 app.get("/call", async (req, res) => {
   let dui = req.query.Digits;
-  let response = `<Response><Say language="es" voice="woman">El número de DUI ingresado es inválido.</Say></Response>`;
+  let response = `<Response><Say language="es" voice="woman">El número de DUI ingresado no es correcto.</Say></Response>`;
   if (dui.length === 9) {
     dui = dui.substr(0, 8) + "-" + dui.substr(8, 1);
     //if (validarDUI(dui)) {
@@ -77,7 +77,7 @@ const buscarInfo = async (dui,tipo) => {
         break;
       
       case 2:
-        response= `<Response><Say language="es" voice="woman">Lo sentimos, este DUI no está sujeto a recibir el beneficio de los $300 dólares. Intenta ingresando el DUI de otra persona de tu vivienda. Si después de haber consultado todos los números de DUI de tu grupo familiar y ninguno aparece en el registro, dirígete al Centro de Atención por Demanda (CENADE) más cercano.</Say></Response>`;
+        response= `<Response><Say language="es" voice="woman">Lo sentimos, este DUI no está sujeto a recibir el beneficio de los $300. Intenta ingresando el DUI de otra persona de tu vivienda. Si después de haber consultado todos los números de DUI de tu grupo familiar y ninguno aparece en el registro, puedes realizar tu reclamo llamando al 2565-5555</Say></Response>`;
         break;
     }
   }
