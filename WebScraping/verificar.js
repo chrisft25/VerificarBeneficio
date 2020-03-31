@@ -12,9 +12,9 @@ app.get("/sms", async (req, res) => {
   let response = "El DUI no es válido"
   if (dui.length === 9) {
     dui = dui.substr(0, 8) + "-" + dui.substr(8, 1);
-    if (validarDUI(dui)) {
+    //if (validarDUI(dui)) {
       response = await buscarInfo(dui,1);
-    }
+    //}
   }
   response = `<Response><Message to="${destinatario}">${response}</Message></Response>`
   res.send(response);
@@ -25,9 +25,9 @@ app.get("/call", async (req, res) => {
   let response = `<Response><Say language="es" voice="woman">El número de DUI ingresado es inválido.</Say></Response>`;
   if (dui.length === 9) {
     dui = dui.substr(0, 8) + "-" + dui.substr(8, 1);
-    if (validarDUI(dui)) {
+    //if (validarDUI(dui)) {
       response = await buscarInfo(dui,2);
-    }
+    //}
   }
   res.send(response);
 });
