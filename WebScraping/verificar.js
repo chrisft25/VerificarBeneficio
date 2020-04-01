@@ -66,7 +66,7 @@ const buscarInfo = async (dui,tipo) => {
         break;
       
       case 2:
-        response= `<Response><Say language="es" voice="woman">${respuesta}</Say></Response>`;
+        response= `<Response><Say language="es" voice="woman">${respuesta}. Llama al veinticinco, sesenta y cinco, cincuenta y cinco, cincuenta y cinco para información oficial.</Say></Response>`;
         break;
     }
     
@@ -77,7 +77,7 @@ const buscarInfo = async (dui,tipo) => {
         break;
       
       case 2:
-        response= `<Response><Say language="es" voice="woman">Lo sentimos, este DUI no está sujeto a recibir el beneficio de los $300. Intenta ingresando el DUI de otra persona de tu vivienda. Si después de haber consultado todos los números de DUI de tu grupo familiar y ninguno aparece en el registro, puedes realizar tu reclamo llamando al 2565-5555</Say></Response>`;
+        response= `<Response><Say language="es" voice="woman">Lo sentimos, este DUI no está sujeto a recibir el beneficio de los $300. Intenta ingresando el DUI de otra persona de tu vivienda. Si después de haber consultado todos los números de DUI de tu grupo familiar y ninguno aparece en el registro, llama al veinticinco, sesenta y cinco, cincuenta y cinco, cincuenta y cinco para realizar tu reclamo.</Say></Response>`;
         break;
     }
   }
