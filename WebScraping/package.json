@@ -4,7 +4,7 @@
   "description": "",
   "main": "verificar.js",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "puppeteer": "^2.1.1"
   },
   "devDependencies": {},
